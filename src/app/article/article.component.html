@@ -1,132 +1,118 @@
-<h1>Angular CRUD Example</h1>
-<h3 *ngIf="articleIdToUpdate; else create">
-  Update Article for Id: {{articleIdToUpdate}}
-</h3>
-<ng-template #create>
-  <h3> Create New Article </h3>
-</ng-template>
-<div>
-  <form [formGroup]="articleForm" (ngSubmit)="onArticleFormSubmit()">
-    <!-- <table>
-      <tr>
-        <td>Enter Address</td>
-        <td>
-          <input formControlName="address">
-          <label *ngIf="articleForm.get('title').invalid && processValidation" class="error"> Title is required. </label>
-        </td>
-      </tr>
-      <tr>
-        <td>Enter Category</td>
-        <td>
-          <input formControlName="category">
-          <label *ngIf="articleForm.get('category').invalid && processValidation" class="error"> Category is required. </label>
-        </td>
-      </tr>
-      <tr>
-        <td colspan="2">
-          <button *ngIf="!articleIdToUpdate">CREATE</button>
-          <button *ngIf="articleIdToUpdate">UPDATE</button>
-          <button (click)="backToCreateArticle()" *ngIf="articleIdToUpdate">Go Back</button>
-        </td>
-      </tr>
-    </table> -->
-    <div class="name-input">
-      <label for="name">Enter Name:</label>
-      <input type="text" formControlName="name" >
-      <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
-    </div>
-    <div class="birthdate-input">
-      <label for="birthdate">Enter Birthdate:</label>
-      <input type="date" formControlName="birthdate" >
-      <label *ngIf="articleForm.get('birthdate').invalid && processValidation" class="error"> Birthdate is required. </label>
-    </div>
-    <div class="anniversary-input">
-      <label for="anniversary">Enter anniversary date:</label>
-      <input type="date" formControlName="anniversary" >
-      <!-- <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label> -->
-    </div>
-    <div class="gender-input">
-      <label for="gender">Enter Gender</label>
-      <!-- <input type="text" formControlName="name" > -->
-      <select name="gender" id="gender" formControlName="gender">
-          <option name="gender-option" value="male" >Male</option>
-          <option name="gender-option" value="female" >Female</option>
-      </select>
-      <!-- <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label> -->
-    </div>
-    <div class="pincode-input">
-      <label for="pincode">Enter Pincode:</label>
-      <input type="number" formControlName="pinCode" >
-      <label *ngIf="articleForm.get('pinCode').invalid && processValidation" class="error"> Pincode is required. </label>
-    </div>
-    <button *ngIf="!articleIdToUpdate">CREATE</button>
-    <button *ngIf="articleIdToUpdate">UPDATE</button>
-    <button (click)="backToCreateArticle()" *ngIf="articleIdToUpdate">Go Back</button>
-
-    <!-- <div class="address-container">
-      <div class="street-input">
-        <label for="name">Enter name:</label>
-        <input type="text" formControlName="name" >
-        <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
-      </div>
-      <div class="city-input">
-        <label for="name">Enter name:</label>
-        <input type="text" formControlName="name" >
-        <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
-      </div>
-      <div class="pincode-input">
-        <label for="name">Enter name:</label>
-        <input type="text" formControlName="name" >
-        <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
-      </div>
-      <div class="state-input">
-        <label for="name">Enter name:</label>
-        <input type="text" formControlName="name" >
-        <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
-      </div>
-    </div> -->
-  </form>
-  <br/>
-  <div *ngIf="statusCode; else processing">
-    <div *ngIf="statusCode === 201" class="success">
-      Article added successfully.
-    </div>
-    <div *ngIf="statusCode === 204" class="success">
-      Article updated successfully.
-    </div>
-    <div *ngIf="statusCode === 420" class="success">
-      Article deleted successfully.
-    </div>
-    <div *ngIf="statusCode === 500" class="error">
-      Internal Server Error.
-    </div>
+<!-- <h1>Angular CRUD Example</h1> -->
+<div class="article-container">
+  <mat-toolbar class="toolbar">
+    <span>Angular CRUD Example</span>
+  </mat-toolbar>
+  
+  <div class="heading" *ngIf="articleIdToUpdate; else create">
+    Update Details for Id: {{articleIdToUpdate}}
   </div>
-  <ng-template #processing>
-    <img *ngIf="requestProcessing" src="~/src/assets/loading.gif">
+
+  <mat-card class="form-card card">
+  
+  <ng-template #create>
+    <div class="heading" > Enter Details Below </div>
   </ng-template>
+  <div>
+    <form class="example-form" [formGroup]="articleForm" (ngSubmit)="onArticleFormSubmit()">
+      <mat-form-field class="example-full-width" >
+        <!-- <mat-label for="name">Enter Name:</mat-label> -->
+        <input matInput type="text" required name="name" formControlName="name" placeholder="name:" >
+        <mat-error *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label for="birthdate">Enter Birthdate:</mat-label>
+        <!-- <input matInput type="date" formControlName="birthdate" > -->
+        <input matInput formControlName="birthdate" placeholder="Birthdate:" [matDatepicker]="birthdate">
+  <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
+  <mat-datepicker #birthdate></mat-datepicker>
+        <mat-error *ngIf="articleForm.get('birthdate').invalid && processValidation" class="error"> Birthdate is required. </mat-error>
+      </mat-form-field>
+      <div class="anniversary-input">
+        <label for="anniversary">Enter anniversary date:</label>
+        <input type="date" formControlName="anniversary" >
+        <!-- <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label> -->
+      </div>
+      <div class="gender-input">
+        <label for="gender">Enter Gender</label>
+        <!-- <input type="text" formControlName="name" > -->
+        <select name="gender" id="gender" formControlName="gender">
+            <option name="gender-option" value="male" >Male</option>
+            <option name="gender-option" value="female" >Female</option>
+        </select>
+        <!-- <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label> -->
+      </div>
+      <button *ngIf="!articleIdToUpdate">CREATE</button>
+      <button *ngIf="articleIdToUpdate">UPDATE</button>
+      <button (click)="backToCreateArticle()" *ngIf="articleIdToUpdate">Go Back</button>
+  
+      <div class="address-container">
+        <div class="street-input">
+          <label for="name">Enter name:</label>
+          <input type="text" formControlName="name" >
+          <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
+        </div>
+        <div class="city-input">
+          <label for="name">Enter name:</label>
+          <input type="text" formControlName="name" >
+          <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
+        </div>
+        <div class="pincode-input">
+          <label for="name">Enter name:</label>
+          <input type="text" formControlName="name" >
+          <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
+        </div>
+        <div class="state-input">
+          <label for="name">Enter name:</label>
+          <input type="text" formControlName="name" >
+          <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
+        </div>
+      </div>
+    </form>
+    <br/>
+    <div *ngIf="statusCode; else processing">
+      <div *ngIf="statusCode === 201" class="success">
+        Article added successfully.
+      </div>
+      <div *ngIf="statusCode === 204" class="success">
+        Article updated successfully.
+      </div>
+      <div *ngIf="statusCode === 420" class="success">
+        Article deleted successfully.
+      </div>
+      <div *ngIf="statusCode === 500" class="error">
+        Internal Server Error.
+      </div>
+    </div>
+    <ng-template #processing>
+      <img *ngIf="requestProcessing" src="~/src/assets/loading.gif">
+    </ng-template>
+  </div>
+ 
+  <h3>Article Details</h3>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Birthdate</th>
+      <th>Anniversary</th>
+      <th>Gender</th>
+      <th>Pincode</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+    <tr *ngFor="let article of allArticles">
+      <td>{{article.name}}</td>
+      <td>{{article.birthdate}}</td>
+      <td>{{article.anniversary}}</td>
+      <td>{{article.gender}}</td>
+      <td>{{article.pinCode}}</td>
+      <td>
+        <button type="button" (click)="loadArticleToEdit(article.id)">Edit</button>
+      </td>
+      <td>
+        <button type="button" (click)="deleteArticle(article.id)">Delete</button>
+      </td>
+    </tr>
+  </table>
+</mat-card>
 </div>
-<h3>Article Details</h3>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Birthdate</th>
-    <th>Anniversary</th>
-    <th>Gender</th>
-    <th>Pincode</th>
-    <th>Edit</th>
-    <th>Delete</th>
-  </tr>
-  <tr *ngFor="let article of allArticles">
-    <td>{{article.name}}</td>
-    <td>{{article.birthdate}}</td>
-    <td>{{article.anniversary}}</td>
-    <td>{{article.gender}}</td>
-    <td>{{article.pinCode}}</td>
-    <td>
-      <button type="button" (click)="loadArticleToEdit(article.id)">Edit</button>
-    </td>
-    <td>
-      <button type="button" (click)="deleteArticle(article.id)">Delete</button>
-    </td>
-  </tr>
-</table>

@@ -1,33 +1,75 @@
-h1 {
+/* h1 {
   font-size: 2.0em;
   margin: 20px 0 0 0;
   font-weight: 400;
-}
-h3 {
+} */
+/* h3 {
   color: blue;
-}
+} */
 table {
   border-collapse: collapse;
 }
 table, th, td {
   border: 1px solid black;
   font-size:17px;
+  padding: 10px;
 }
-input {
+/* input {
   width: 225px;
   margin: 8px 0;
   background-color: #dfdfdf;
   font-size:17px;
-}
+} */
 button {
-  background-color: #008CBA;
+  background-color: #3f51b5;
+  padding: 10px;
   color: white;
 }
-.error{
+/* .error{
   color: red;
   font-size: 20px;
 }
 .success{
   color: green;
   font-size: 20px;
+} */
+
+.article-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.toolbar {
+  background-color: #3f51b5;
+  color: white;
+  font-size: 26px;
+  text-align: center;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.heading {
+  padding: 10px;
+  font-size: 22px;
+  color: rgba(0,0,0,.87);
+}
+
+.form-card {
+  /* background-color: white; */
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.example-form {
+
+}
+
+.example-full-width {
+  width: 60%;
+  padding: 0 5px;
 }

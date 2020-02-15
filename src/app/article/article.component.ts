@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 
 import { ArticleService } from './article.service';
 import { Article } from './article';

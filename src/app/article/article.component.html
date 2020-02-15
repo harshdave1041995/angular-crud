@@ -49,9 +49,8 @@
       <label for="gender">Enter Gender</label>
       <!-- <input type="text" formControlName="name" > -->
       <select name="gender" id="gender" formControlName="gender">
-        <optgroup name="gender-option">
-          <option >Male</option>
-        </optgroup>
+          <option name="gender-option" value="male" >Male</option>
+          <option name="gender-option" value="female" >Female</option>
       </select>
       <!-- <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label> -->
     </div>
@@ -92,10 +91,10 @@
     <div *ngIf="statusCode === 201" class="success">
       Article added successfully.
     </div>
-    <div *ngIf="statusCode === 200" class="success">
+    <div *ngIf="statusCode === 204" class="success">
       Article updated successfully.
     </div>
-    <div *ngIf="statusCode === 204" class="success">
+    <div *ngIf="statusCode === 420" class="success">
       Article deleted successfully.
     </div>
     <div *ngIf="statusCode === 500" class="error">
@@ -103,7 +102,7 @@
     </div>
   </div>
   <ng-template #processing>
-    <img *ngIf="requestProcessing" src="assets/images/loading.gif">
+    <img *ngIf="requestProcessing" src="~/src/assets/loading.gif">
   </ng-template>
 </div>
 <h3>Article Details</h3>
@@ -111,8 +110,9 @@
   <tr>
     <th>Name</th>
     <th>Birthdate</th>
-    <th>anniversary</th>
-    <th>gender</th>
+    <th>Anniversary</th>
+    <th>Gender</th>
+    <th>Pincode</th>
     <th>Edit</th>
     <th>Delete</th>
   </tr>
@@ -121,11 +121,12 @@
     <td>{{article.birthdate}}</td>
     <td>{{article.anniversary}}</td>
     <td>{{article.gender}}</td>
+    <td>{{article.pinCode}}</td>
     <td>
-      <button type="button" (click)="loadArticleToEdit(article.name)">Edit</button>
+      <button type="button" (click)="loadArticleToEdit(article.id)">Edit</button>
     </td>
     <td>
-      <button type="button" (click)="deleteArticle(article.name)">Delete</button>
+      <button type="button" (click)="deleteArticle(article.id)">Delete</button>
     </td>
   </tr>
 </table>

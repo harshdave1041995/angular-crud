@@ -9,23 +9,23 @@ import { Article } from './article';
   providedIn: 'root'
 })
 export class ArticleService {
-  //URL for CRUD operations
-  articleUrl = "/api/articles";
-  //Create constructor to get Http instance
+  // URL for CRUD operations
+  articleUrl = '/api/articles';
+  // Create constructor to get Http instance
   constructor(private http: HttpClient) { }
-  //Fetch all articles
+  // Fetch all articles
   getAllArticles(): Observable<Article[]> {
     return this.http.get<Article[]>(this.articleUrl).pipe(
-      tap(articles => console.log("Number of articles: " + articles.length)),
+      tap(articles => console.log('Number of articles: ' + articles.length)),
       catchError(this.handleError)
     );
   }
-  //Create article
+  // Create article
   createArticle(article: Article): Observable<number> {
-    let httpHeaders = new HttpHeaders({
+    const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.post<Article>(this.articleUrl + "/" + article.name, article, {
+    return this.http.post<Article>(this.articleUrl + '/' + article.id.toFixed(0), article, {
         headers: httpHeaders,
         observe: 'response'
       }
@@ -34,19 +34,19 @@ export class ArticleService {
       catchError(this.handleError)
     );
   }
-  //Fetch article by name
-  getArticleByName(articleName: string): Observable<Article> {
-    return this.http.get<Article>(this.articleUrl + "/" + articleName).pipe(
-      tap(article => console.log(article.birthdate + " " + article.gender + " " + article.name)),
+  // Fetch article by name
+  getArticleByName(articleName: number): Observable<Article> {
+    return this.http.get<Article>(this.articleUrl + '/' + articleName).pipe(
+      tap(article => console.log(article.id + ' ' + article.name)),
       catchError(this.handleError)
     );
   }
-  //Update articlesy
+  // Update articlesy
   updateArticle(article: Article): Observable<number> {
-    let httpHeaders = new HttpHeaders({
+    const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    return this.http.put<Article>(this.articleUrl + "/" + article.name, article, {
+    return this.http.put<Article>(this.articleUrl + '/' + article.id, article, {
         headers: httpHeaders,
         observe: 'response'
       }
@@ -55,10 +55,10 @@ export class ArticleService {
       catchError(this.handleError)
     );
   }
-  //Delete article
-  deleteArticleByAddress(articleAddress: any): Observable<any> {
-    return this.http.delete<any>(this.articleUrl + "/" + articleAddress).pipe(
-      tap(status => console.log("status: " + status)),
+  // Delete article
+  deleteArticleByAddress(articleAddress: number): Observable<Article> {
+    return this.http.delete<any>(this.articleUrl + '/' + articleAddress).pipe(
+      tap(status => console.log('status: ' + status)),
       catchError(this.handleError)
     );
   }

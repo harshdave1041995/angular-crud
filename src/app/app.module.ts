@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { ArticleComponent } from './article/article.component';
 
-//For InMemory testing
+// For InMemory testing
 // @ts-ignore
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 // @ts-ignore

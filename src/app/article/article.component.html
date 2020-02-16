@@ -1,4 +1,3 @@
-<!-- <h1>Angular CRUD Example</h1> -->
 <div class="article-container">
   <mat-toolbar class="toolbar">
     <span>Angular CRUD Example</span>
@@ -8,111 +7,114 @@
     Update Details for Id: {{articleIdToUpdate}}
   </div>
 
-  <mat-card class="form-card card">
-  
+  <mat-card class="form-card">
   <ng-template #create>
-    <div class="heading" > Enter Details Below </div>
+    <mat-card-title class="heading" > Enter Details Below </mat-card-title>
   </ng-template>
-  <div>
-    <form class="example-form" [formGroup]="articleForm" (ngSubmit)="onArticleFormSubmit()">
-      <mat-form-field class="example-full-width" >
-        <!-- <mat-label for="name">Enter Name:</mat-label> -->
-        <input matInput type="text" required name="name" formControlName="name" placeholder="name:" >
-        <mat-error *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </mat-error>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-        <mat-label for="birthdate">Enter Birthdate:</mat-label>
-        <!-- <input matInput type="date" formControlName="birthdate" > -->
-        <input matInput formControlName="birthdate" placeholder="Birthdate:" [matDatepicker]="birthdate">
-  <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
-  <mat-datepicker #birthdate></mat-datepicker>
-        <mat-error *ngIf="articleForm.get('birthdate').invalid && processValidation" class="error"> Birthdate is required. </mat-error>
-      </mat-form-field>
-      <div class="anniversary-input">
-        <label for="anniversary">Enter anniversary date:</label>
-        <input type="date" formControlName="anniversary" >
-        <!-- <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label> -->
-      </div>
-      <div class="gender-input">
-        <label for="gender">Enter Gender</label>
-        <!-- <input type="text" formControlName="name" > -->
-        <select name="gender" id="gender" formControlName="gender">
-            <option name="gender-option" value="male" >Male</option>
-            <option name="gender-option" value="female" >Female</option>
-        </select>
-        <!-- <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label> -->
-      </div>
-      <button *ngIf="!articleIdToUpdate">CREATE</button>
-      <button *ngIf="articleIdToUpdate">UPDATE</button>
-      <button (click)="backToCreateArticle()" *ngIf="articleIdToUpdate">Go Back</button>
   
-      <div class="address-container">
-        <div class="street-input">
-          <label for="name">Enter name:</label>
-          <input type="text" formControlName="name" >
-          <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
-        </div>
-        <div class="city-input">
-          <label for="name">Enter name:</label>
-          <input type="text" formControlName="name" >
-          <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
-        </div>
-        <div class="pincode-input">
-          <label for="name">Enter name:</label>
-          <input type="text" formControlName="name" >
-          <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
-        </div>
-        <div class="state-input">
-          <label for="name">Enter name:</label>
-          <input type="text" formControlName="name" >
-          <label *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </label>
-        </div>
-      </div>
-    </form>
+    <div class="form-container">
+      <form class="form" [formGroup]="articleForm" (ngSubmit)="onArticleFormSubmit()">
+        <mat-card-content class="form-content">
+        <mat-form-field class="example-full-width" >
+          <input matInput type="text" name="name" formControlName="name" placeholder="Name" >
+          <mat-error *ngIf="articleForm.get('name').invalid && processValidation" class="error"> Name is required. </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label for="birthdate">Enter Birthdate</mat-label>
+          <input matInput formControlName="birthdate" placeholder="Birthdate" [matDatepicker]="birthdate">
+          <mat-datepicker-toggle matSuffix [for]="birthdate"></mat-datepicker-toggle>
+          <mat-datepicker #birthdate></mat-datepicker>
+          <mat-error *ngIf="articleForm.get('birthdate').invalid && processValidation" class="error"> Birthdate is required. </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label for="anniversary">Enter anniversary date</mat-label>
+          <input matInput formControlName="anniversary" [matDatepicker]="anniversary">
+          <mat-datepicker-toggle matSuffix [for]="anniversary"></mat-datepicker-toggle>
+          <mat-datepicker #anniversary></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Gender</mat-label>
+          <mat-select name="gender" id="gender" formControlName="gender">
+              <mat-option name="gender-option" value="Male" >Male</mat-option>
+              <mat-option name="gender-option" value="Female" >Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Street Address" type="text" formControlName="street" >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="City" type="text" formControlName="city" >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="State" type="text" formControlName="state" >
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Pincode" type="text" formControlName="pinCode" >
+          </mat-form-field>
+      </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" type="submit" *ngIf="!articleIdToUpdate">CREATE</button>
+          <button mat-raised-button color="primary" type="submit" *ngIf="articleIdToUpdate">UPDATE</button>
+          <button mat-raised-button color="primary" *ngIf="articleIdToUpdate">CANCEL</button>
+        </mat-card-actions>
+      </form>
+    </div>
+  </mat-card>
+
     <br/>
-    <div *ngIf="statusCode; else processing">
-      <div *ngIf="statusCode === 201" class="success">
+
+    <mat-card class="status-container" *ngIf="statusCode; else processing">
+      <div class="status-text" *ngIf="statusCode === 201" class="success">
         Article added successfully.
       </div>
-      <div *ngIf="statusCode === 204" class="success">
+      <div class="status-text" *ngIf="statusCode === 204" class="success">
         Article updated successfully.
       </div>
-      <div *ngIf="statusCode === 420" class="success">
+      <div class="status-text" *ngIf="statusCode === 420" class="success">
         Article deleted successfully.
       </div>
-      <div *ngIf="statusCode === 500" class="error">
+      <div class="status-text" *ngIf="statusCode === 500" class="error">
         Internal Server Error.
       </div>
-    </div>
+    </mat-card>
+
     <ng-template #processing>
-      <img *ngIf="requestProcessing" src="~/src/assets/loading.gif">
+      <img class="loading-image" *ngIf="requestProcessing" src="assets/loading.gif">
     </ng-template>
-  </div>
  
-  <h3>Article Details</h3>
-  <table>
+  <mat-card class="table-card">
+  <mat-card-title class="table-card-heading">Article Details</mat-card-title>
+  <mat-card-content>
+  <table class="table">
     <tr>
-      <th>Name</th>
-      <th>Birthdate</th>
-      <th>Anniversary</th>
-      <th>Gender</th>
-      <th>Pincode</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th>NAME</th>
+      <th>BIRTHDATE</th>
+      <th>ANNIVERSARY</th>
+      <th>GENDER</th>
+      <th>STREET</th>
+      <th>CITY</th>
+      <th>STATE</th>
+      <th>PINCODE</th>
+      <th colspan="2">OPTIONS</th>
+      <!-- <th></th> -->
     </tr>
     <tr *ngFor="let article of allArticles">
       <td>{{article.name}}</td>
       <td>{{article.birthdate}}</td>
       <td>{{article.anniversary}}</td>
       <td>{{article.gender}}</td>
+      <td>{{article.street}}</td>
+      <td>{{article.city}}</td>
+      <td>{{article.state}}</td>
       <td>{{article.pinCode}}</td>
-      <td>
-        <button type="button" (click)="loadArticleToEdit(article.id)">Edit</button>
+      <td class="button-column-left">
+        <button mat-raised-button color="primary" type="button" (click)="loadArticleToEdit(article.id)">EDIT</button>
       </td>
-      <td>
-        <button type="button" (click)="deleteArticle(article.id)">Delete</button>
+      <td class="button-column-right">
+        <button mat-raised-button color="primary" type="button" (click)="deleteArticle(article.id)">DELETE</button>
       </td>
     </tr>
   </table>
+</mat-card-content>
 </mat-card>
 </div>

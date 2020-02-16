@@ -4,11 +4,8 @@ export class Article {
   birthdate: Date;
   anniversary: Date;
   gender: string;
+  street: string;
+    city: string;
+    state: string;
   pinCode: number;
-  // address: {
-  //   street: string;
-  //   city: string;
-  //   pinCode: number;
-  //   state: string;
-  // };
 }

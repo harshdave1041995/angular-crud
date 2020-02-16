@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { ArticleService } from './article.service';
 import { Article } from './article';
@@ -20,10 +20,13 @@ export class ArticleComponent implements OnInit {
   articleForm = new FormGroup({
     id: new FormControl(''),
     name: new FormControl('', Validators.required),
-    birthdate: new FormControl('', Validators.required),
-    anniversary: new FormControl(''),
+    birthdate: new FormControl(new Date(), Validators.required),
+    anniversary: new FormControl(new Date()),
     gender: new FormControl(''),
-    pinCode: new FormControl('', Validators.required)
+    street: new FormControl(''),
+    city: new FormControl(''),
+    state: new FormControl(''),
+    pinCode: new FormControl('')
   });
   // Create constructor to get service instance
   constructor(private articleService: ArticleService) {
@@ -102,7 +105,7 @@ export class ArticleComponent implements OnInit {
       .subscribe(article => {
         this.articleIdToUpdate = article.id;
         // tslint:disable-next-line: max-line-length
-        this.articleForm.setValue({ id: article.id, birthdate: article.birthdate, gender: article.gender, name: article.name, pinCode: article.pinCode, anniversary: article.anniversary });
+        this.articleForm.setValue({ id: article.id, name: article.name, birthdate: article.birthdate, anniversary: article.anniversary, gender: article.gender, pinCode: article.pinCode, street: article.street, city: article.city, state: article.state });
         this.processValidation = true;
         this.requestProcessing = false;
       },
@@ -131,6 +134,7 @@ export class ArticleComponent implements OnInit {
   }
   // Go back from update to create
   backToCreateArticle() {
+    // this.statusCode = null;
     this.articleIdToUpdate = null;
     this.articleForm.reset();
     this.processValidation = false;

@@ -10,8 +10,8 @@ table {
   border-collapse: collapse;
 }
 table, th, td {
-  border: 1px solid black;
-  font-size:17px;
+  border: 1px solid rgb(148, 148, 148);
+  font-size:14px;
   padding: 10px;
 }
 /* input {
@@ -20,19 +20,22 @@ table, th, td {
   background-color: #dfdfdf;
   font-size:17px;
 } */
-button {
+/* button {
   background-color: #3f51b5;
   padding: 10px;
   color: white;
-}
-/* .error{
+} */
+.error{
   color: red;
-  font-size: 20px;
 }
 .success{
   color: green;
-  font-size: 20px;
-} */
+}
+
+.loading-image {
+  width: 100px;
+  height: 100px;
+}
 
 .article-container {
   width: 100%;
@@ -49,6 +52,11 @@ button {
   width: 100%;
   padding: 10px;
   margin-bottom: 20px;
+  height: 80px;
+}
+
+.toolbar > span {
+  width: 100%;
 }
 
 .heading {
@@ -59,17 +67,65 @@ button {
 
 .form-card {
   /* background-color: white; */
-  width: 90vw;
+  max-width: 95vw;
+  min-width: 40vw;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.example-form {
+.form-container {
+  width: 100%;
+}
 
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-content {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .example-full-width {
-  width: 60%;
+  width: 90%;
   padding: 0 5px;
+}
+
+.table {
+  max-width: 100%;
+}
+
+.table-card {
+  max-width: 95vw;
+  min-width: 60vw;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  text-align: center;
+  overflow-y: auto;
+}
+
+.table-card-heading {
+  margin-bottom: 15px;
+}
+
+.button-column-left {
+  border-right: none !important;
+}
+.button-column-right {
+  border-left: none !important;
+}
+
+.status-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.status-text {
+  padding: 15px;
 }

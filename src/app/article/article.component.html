@@ -39,6 +39,7 @@
               <mat-option name="gender-option" value="Female" >Female</mat-option>
           </mat-select>
         </mat-form-field>
+        <mat-label class="address-label">Address Details:</mat-label>
           <mat-form-field class="example-full-width">
             <input matInput placeholder="Street Address" type="text" formControlName="street" >
           </mat-form-field>
@@ -96,7 +97,6 @@
       <th>STATE</th>
       <th>PINCODE</th>
       <th colspan="2">OPTIONS</th>
-      <!-- <th></th> -->
     </tr>
     <tr *ngFor="let article of allArticles">
       <td>{{article.name}}</td>

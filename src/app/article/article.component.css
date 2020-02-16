@@ -1,11 +1,4 @@
-/* h1 {
-  font-size: 2.0em;
-  margin: 20px 0 0 0;
-  font-weight: 400;
-} */
-/* h3 {
-  color: blue;
-} */
+
 table {
   border-collapse: collapse;
 }
@@ -14,17 +7,7 @@ table, th, td {
   font-size:14px;
   padding: 10px;
 }
-/* input {
-  width: 225px;
-  margin: 8px 0;
-  background-color: #dfdfdf;
-  font-size:17px;
-} */
-/* button {
-  background-color: #3f51b5;
-  padding: 10px;
-  color: white;
-} */
+
 .error{
   color: red;
 }
@@ -66,7 +49,6 @@ table, th, td {
 }
 
 .form-card {
-  /* background-color: white; */
   max-width: 95vw;
   min-width: 40vw;
   display: flex;
@@ -105,7 +87,6 @@ table, th, td {
   min-width: 60vw;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   text-align: center;
   overflow-y: auto;
 }
@@ -128,4 +109,9 @@ table, th, td {
 
 .status-text {
   padding: 15px;
+}
+
+.address-label {
+  margin: 10px 0;
+  font-size: 18px;
 }

@@ -5,7 +5,7 @@ export class Article {
   anniversary: Date;
   gender: string;
   street: string;
-    city: string;
-    state: string;
+  city: string;
+  state: string;
   pinCode: number;
 }
